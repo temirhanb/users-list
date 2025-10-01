@@ -24,6 +24,8 @@ export const Headers: React.FC = () => {
       <Modal
         title="Add user"
         open={isModalOpen}
+        onOk={closeModal}
+        onCancel={closeModal}
         footer={null}
       >
         <AddModal onClose={closeModal}/>

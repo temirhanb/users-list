@@ -86,6 +86,8 @@ export const TableUsersList: React.FC = () => {
       <Modal
         title="Edit user"
         open={isModalOpen}
+        onOk={closeModal}
+        onCancel={closeModal}
         footer={null}
       >
         <EditModal onClose={closeModal} user={editableUser}/>

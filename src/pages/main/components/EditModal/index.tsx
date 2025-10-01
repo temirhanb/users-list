@@ -1,15 +1,9 @@
 import React from "react";
-import {Controller, type SubmitHandler, useForm} from "react-hook-form";
+import {Controller} from "react-hook-form";
 import {Button, Form, Input, Select} from "antd";
-import {useDispatch} from "react-redux";
-import {z} from "zod";
-import {zodResolver} from "@hookform/resolvers/zod";
 
-import {editUser, type IUser} from "@app/state/slices/usersListSlice";
-import {type AppDispatch} from "@app/state/store";
-import {SCHEMA_FORM} from "@/shared";
-
-type FormData = z.infer<typeof SCHEMA_FORM>;
+import {type IUser} from "@app/state/slices/usersListSlice";
+import {useEditModalHook} from "@pages/main/hooks";
 
 type TProps = {
   user: IUser,
@@ -19,34 +13,8 @@ type TProps = {
 
 export const EditModal: React.FC<TProps> = ({onClose, user}) => {
 
-  const dispatch = useDispatch<AppDispatch>();
-  const {
-    handleSubmit,
-    control,
-    formState: {errors},
-  } = useForm<FormData>({
-    resolver: zodResolver(SCHEMA_FORM),
+  const {handleSubmit, onSubmit, control, errors} = useEditModalHook(onClose, user);
 
-    defaultValues: {
-      role: user.role,
-      name: user.name,
-      phone: user.phone,
-      email: user.email,
-    },
-  });
-
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-
-    const editableUser: IUser = {
-      id: user.id,
-      name: data.name,
-      email: data.email,
-      phone: data.phone,
-      role: data.role,
-    };
-    dispatch(editUser(editableUser));
-    onClose();
-  };
   return (
     <Form onFinish={handleSubmit(onSubmit)}>
       <Form.Item

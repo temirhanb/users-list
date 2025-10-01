@@ -1,50 +1,16 @@
 import React from "react";
-import {Controller, type SubmitHandler, useForm} from "react-hook-form";
+import {Controller} from "react-hook-form";
 import {Button, Form, Input, Select} from "antd";
-import {useDispatch} from "react-redux";
-import {z} from "zod";
-import {zodResolver} from "@hookform/resolvers/zod";
-
-import {addUser, type IUser} from "@app/state/slices/usersListSlice";
-import {type AppDispatch} from "@app/state/store";
-import {SCHEMA_FORM} from "@/shared";
-
-type FormData = z.infer<typeof SCHEMA_FORM>;
+import {useAddModalHook} from "@pages/main/hooks";
+import {MaskedInput} from "antd-mask-input";
 
 type IProps = {
   onClose: () => void
 }
 
 export const AddModal: React.FC<IProps> = ({onClose}) => {
+  const {handleSubmit, errors, onSubmit, control} = useAddModalHook(onClose);
 
-  const dispatch = useDispatch<AppDispatch>();
-  const {
-    handleSubmit,
-    control,
-    formState: {errors},
-  } = useForm<FormData>({
-    resolver: zodResolver(SCHEMA_FORM),
-
-    defaultValues: {
-      role: "User",
-      name: "",
-      phone: "",
-      email: "",
-    },
-  });
-
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-
-    const newUser: IUser = {
-      id: Math.floor(Math.random() * 9999999),
-      name: data.name,
-      email: data.email,
-      phone: data.phone,
-      role: data.role,
-    };
-    dispatch(addUser(newUser));
-    onClose();
-  };
   return (
     <Form onFinish={handleSubmit(onSubmit)}>
       <Form.Item
@@ -84,7 +50,8 @@ export const AddModal: React.FC<IProps> = ({onClose}) => {
           name="phone"
           control={control}
           render={({field}) =>
-            <Input
+            <MaskedInput
+              mask={"+7 (000) 000 00 00"}
               placeholder={"Example: +7 999 999 99 99"}
               variant={"underlined"}
               {...field}
