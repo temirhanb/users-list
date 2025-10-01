@@ -41,11 +41,11 @@ export const TableUsersList: React.FC = () => {
       responsive: ["sm"],
       render: (_, {role}) => (
         <>
-          <Tag color={"green"} key={role}>
+          <Tag color={role === "User" ? "green" : role === "Admin" ? "orange" : "blue"} key={role}>
             {role.toUpperCase()}
           </Tag>
         </>
-      ),
+      )
     },
     {
       title: "Action",
