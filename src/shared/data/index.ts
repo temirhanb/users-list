@@ -12,7 +12,7 @@ export const DATA_USERS: IUser[] = [
   {
     key: "2",
     id: 1232,
-    name: "John Brown",
+    name: "John ",
     email: "qew@asd.com",
     phone: "+7 (777) 888 89 99",
     role: "User",
@@ -28,7 +28,7 @@ export const DATA_USERS: IUser[] = [
   {
     key: "4",
     id: 3124,
-    name: "John Brown",
+    name: "Brown",
     email: "qew@asd.com",
     phone: "+7 (777) 888 89 99",
     role: "Admin",
@@ -36,7 +36,7 @@ export const DATA_USERS: IUser[] = [
   {
     key: "5",
     id: 3125,
-    name: "John Brown",
+    name: "Jana Dark",
     email: "qew@asd.com",
     phone: "+7 (777) 888 89 99",
     role: "Manager",
@@ -44,14 +44,14 @@ export const DATA_USERS: IUser[] = [
   {
     key: "6",
     id: 3126,
-    name: "John Brown",
+    name: "Joh",
     email: "qew@asd.com",
     phone: "+7 (777) 888 89 99",
     role: "Manager",
-  },  {
+  }, {
     key: "7",
     id: 3127,
-    name: "John Brown",
+    name: "Bro",
     email: "qew@asd.com",
     phone: "+7 (777) 888 89 99",
     role: "User",
@@ -62,17 +62,17 @@ export const DATA_USERS: IUser[] = [
     email: "qew@asd.com",
     phone: "+7 (777) 888 89 99",
     role: "User",
-  },  {
+  }, {
     key: "9",
     id: 3129,
-    name: "John Brown",
+    name: "hi",
     email: "qew@asd.com",
     phone: "+7 (777) 888 89 99",
     role: "User",
-  },  {
+  }, {
     key: "10",
     id: 31231,
-    name: "John Brown",
+    name: "lol",
     email: "qew@asd.com",
     phone: "+7 (777) 888 89 99",
     role: "User",

@@ -12,7 +12,7 @@ export const useAddModalHook = (onClose: () => void) => {
   const dispatch = useDispatch<AppDispatch>();
   const {
     handleSubmit,
-    control,
+    control, reset,
     formState: {errors},
   } = useForm<FormData>({
     resolver: zodResolver(SCHEMA_FORM),
@@ -27,14 +27,17 @@ export const useAddModalHook = (onClose: () => void) => {
 
   const onSubmit: SubmitHandler<FormData> = (data) => {
 
+    const randomIDs = Math.floor(Math.random() * 9999999);
     const newUser: IUser = {
-      id: Math.floor(Math.random() * 9999999),
+      id: randomIDs,
+      key: `${randomIDs}`,
       name: data.name,
       email: data.email,
       phone: data.phone,
       role: data.role,
     };
     dispatch(addUser(newUser));
+    reset();
     onClose();
   };
 

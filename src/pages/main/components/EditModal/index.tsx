@@ -4,11 +4,11 @@ import {Button, Form, Input, Select} from "antd";
 
 import {type IUser} from "@app/state/slices/usersListSlice";
 import {useEditModalHook} from "@pages/main/hooks";
+import {MaskedInput} from "antd-mask-input";
 
 type TProps = {
   user: IUser,
   onClose: () => void
-
 }
 
 export const EditModal: React.FC<TProps> = ({onClose, user}) => {
@@ -38,12 +38,13 @@ export const EditModal: React.FC<TProps> = ({onClose, user}) => {
         <Controller
           name="email"
           control={control}
-          render={({field}) =>
+          render={({field}) => (
             <Input
               placeholder={"Example: example@mail.com"}
               variant={"underlined"}
               {...field}
-            />}
+            />
+          )}
         />
       </Form.Item>
       <Form.Item
@@ -53,12 +54,13 @@ export const EditModal: React.FC<TProps> = ({onClose, user}) => {
         <Controller
           name="phone"
           control={control}
-          render={({field}) =>
-            <Input
+          render={({field}) => (<MaskedInput
+              mask={"+7 (000) 000 00 00"}
               placeholder={"Example: +7 999 999 99 99"}
               variant={"underlined"}
               {...field}
-            />}
+            />
+          )}
         />
       </Form.Item>
       <Form.Item
@@ -66,8 +68,8 @@ export const EditModal: React.FC<TProps> = ({onClose, user}) => {
         <Controller
           control={control}
           name="role"
-          render={({field}) => (
-            <Select
+          render={({field}) => {
+            return <Select
               {...field}
               variant={"underlined"}
               options={[
@@ -75,8 +77,8 @@ export const EditModal: React.FC<TProps> = ({onClose, user}) => {
                 {value: "User", label: "User"},
                 {value: "Manager", label: "Manager"},
               ]}
-            />
-          )}
+            />;
+          }}
         />
       </Form.Item>
       <Form.Item>

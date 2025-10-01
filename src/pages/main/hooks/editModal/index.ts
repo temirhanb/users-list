@@ -5,11 +5,13 @@ import {type SubmitHandler, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {SCHEMA_FORM} from "@/shared";
 import {editUser, type IUser} from "@app/state/slices/usersListSlice";
+import {useEffect} from "react";
 
 type FormData = z.infer<typeof SCHEMA_FORM>;
 
 export const useEditModalHook = (onClose: () => void, user: IUser) => {
   const dispatch = useDispatch<AppDispatch>();
+
   const {
     handleSubmit,
     control,
@@ -26,10 +28,16 @@ export const useEditModalHook = (onClose: () => void, user: IUser) => {
     },
   });
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
+  useEffect(() => {
+    if (user) {
+      reset(user);
+    }
+  }, [user, reset]);
 
+  const onSubmit: SubmitHandler<FormData> = (data) => {
     const editableUser: IUser = {
       id: user.id,
+      key: user.key,
       name: data.name,
       email: data.email,
       phone: data.phone,
@@ -39,5 +47,6 @@ export const useEditModalHook = (onClose: () => void, user: IUser) => {
     reset();
     onClose();
   };
-  return {handleSubmit, onSubmit, onClose, control, errors};
+
+  return {handleSubmit, onSubmit, control, errors};
 };
