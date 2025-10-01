@@ -1,5 +1,6 @@
 # Важно!!
 - Проект запускается на версии Node v22.17.0 и выше
+- Deploy: https://users-list-project.netlify.app/
 # Установка
 ```
 npm i
