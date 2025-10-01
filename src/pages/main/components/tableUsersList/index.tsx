@@ -1,36 +1,15 @@
+import React from "react";
 import {Button, Modal, Space, Table, type TableProps, Tag} from "antd";
-import {useDispatch, useSelector} from "react-redux";
 
-import {deleteUser, type IUser} from "@app/state/slices/usersListSlice";
-import {type AppDispatch, type RootState} from "@app/state/store";
-
-import "@shared/styles/headers.scss";
-import React, {useState} from "react";
+import {type IUser} from "@app/state/slices/usersListSlice";
 import {EditModal} from "@pages/main/components";
+import {useTableUsersHook} from "@pages/main/hooks";
+import "@shared/styles/headers.scss";
 
 export const TableUsersList: React.FC = () => {
 
-  const {users} = useSelector((state: RootState) => state.users);
-  const dispatch = useDispatch<AppDispatch>();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [editableUser, setEditableUser] = useState<IUser>({} as IUser);
+  const {isModalOpen, users, closeModal, handlerDeleteUser, editableUser, handlerEditUser,} = useTableUsersHook();
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
-  const handlerDeleteUser = (id: number) => {
-    dispatch(deleteUser(id));
-  };
-
-  const handlerEditUser = (user: IUser) => {
-    setEditableUser(user);
-    showModal();
-  };
   const columns: TableProps<IUser>["columns"] = [
     {
       title: "Id",

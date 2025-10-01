@@ -23,7 +23,7 @@ export const usersSlices = createSlice({
   initialState,
   reducers: {
     addUser: (state, action: PayloadAction<IUser>) => {
-      state.users.push(action.payload);
+      state.users.unshift(action.payload);
     },
 
     editUser: (state, action: PayloadAction<IUser>) => {

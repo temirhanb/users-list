@@ -1,19 +1,12 @@
-import React, {useState} from "react";
+import React from "react";
 import {Button, Modal} from "antd";
 import {AddModal} from "@pages/main/components/AddModal";
 import "@shared/styles/headers.scss";
-
+import {useHeaderHook} from "@pages/main/hooks";
 
 export const Headers: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const {showModal, closeModal, isModalOpen} = useHeaderHook();
 
   return (
     <header className={"container"}>
