@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "docker": "docker build . -t users-list && docker run -p 3000:3000 users-list",
+    "docker:run": "docker run -p 3000:3000 users-list"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
