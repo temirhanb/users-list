@@ -4,7 +4,7 @@ import {Button, Modal, Space, Table, type TableProps, Tag} from "antd";
 import {type IUser} from "@app/state/slices/usersListSlice";
 import {EditModal} from "@pages/main/components";
 import {useTableUsersHook} from "@pages/main/hooks";
-import "@shared/styles/headers.scss";
+import "@shared/styles/table_users_list.scss";
 
 export const TableUsersList: React.FC = () => {
 
@@ -60,7 +60,7 @@ export const TableUsersList: React.FC = () => {
   ];
 
   return (
-    <>
+    <section className={'container__table'}>
       <Table<IUser> columns={columns} pagination={{position: ["bottomCenter"]}} dataSource={users}/>
       <Modal
         title="Edit user"
@@ -71,7 +71,7 @@ export const TableUsersList: React.FC = () => {
       >
         <EditModal onClose={closeModal} user={editableUser}/>
       </Modal>
-    </>
+    </section>
   );
 };
 
