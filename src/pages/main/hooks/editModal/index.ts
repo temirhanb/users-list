@@ -1,11 +1,11 @@
-import {useDispatch} from "react-redux";
+import {useEffect} from "react";
 import {z} from "zod";
+import {useDispatch} from "react-redux";
 import {type AppDispatch} from "@app/state/store";
 import {type SubmitHandler, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {SCHEMA_FORM} from "@/shared";
 import {editUser, type IUser} from "@app/state/slices/usersListSlice";
-import {useEffect} from "react";
 
 type FormData = z.infer<typeof SCHEMA_FORM>;
 

@@ -1,8 +1,8 @@
 import React from "react";
 import {Button, Modal} from "antd";
 import {AddModal} from "@pages/main/components/AddModal";
-import "@shared/styles/headers.scss";
 import {useHeaderHook} from "@pages/main/hooks";
+import "@shared/styles/headers.scss";
 
 export const Headers: React.FC = () => {
 

@@ -60,8 +60,12 @@ export const TableUsersList: React.FC = () => {
   ];
 
   return (
-    <section className={'container__table'}>
-      <Table<IUser> columns={columns} pagination={{position: ["bottomCenter"]}} dataSource={users}/>
+    <section className={"container__table"}>
+      <Table<IUser>
+        columns={columns}
+        pagination={{position: ["bottomCenter"]}}
+        dataSource={users}
+      />
       <Modal
         title="Edit user"
         open={isModalOpen}
